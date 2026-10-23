@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Prism Remote</title>
+<link rel="stylesheet" href="phone.css">
+</head>
+<body>
+<header class="bar">
+  <div><h1 id="title">Remote</h1><p id="tv">Connecting to your TV</p></div>
+  <span class="dot" id="dot"></span>
+</header>
+<div class="banner" id="banner" hidden></div>
+
+<main>
+  <!-- Remote -->
+  <section class="tab on" id="t-remote">
+    <div class="seg" id="remoteMode"><button class="on" data-m="pad">Buttons</button><button data-m="touch">Touchpad</button></div>
+    <div id="padView">
+      <div class="ring">
+        <button class="arc up" data-k="up" aria-label="Up"></button><button class="arc right" data-k="right" aria-label="Right"></button>
+        <button class="arc down" data-k="down" aria-label="Down"></button><button class="arc left" data-k="left" aria-label="Left"></button>
+        <button class="ok" data-k="ok" aria-label="OK"></button>
+      </div>
+      <div class="keys">
+        <button data-k="back"><svg viewBox="0 0 24 24"><path d="m14.5 5-7 7 7 7"/></svg>Back</button>
+        <button data-k="home"><svg viewBox="0 0 24 24"><path d="M4 11 12 4.5l8 6.5v8a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1Z"/></svg>Home</button>
+        <button data-k="okhold"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="18" cy="12" r="1.3"/></svg>Options</button>
+      </div>
+      <div class="keys">
+        <button data-k="playpause"><svg viewBox="0 0 24 24"><path d="M5 6v12l7-6ZM15 6v12M19 6v12"/></svg>Play</button>
+        <button data-k="voldown"><svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4ZM16 12h4"/></svg>Vol</button>
+        <button data-k="volup"><svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4ZM16 12h4M18 10v4"/></svg>Vol</button>
+        <button data-k="mute"><svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4ZM16 10l4 4M20 10l-4 4"/></svg>Mute</button>
+      </div>
+    </div>
+    <div id="touchView" hidden>
+      <div class="touch" id="touch"><span>Swipe to move. Tap to select.<br>Press and hold for options.</span></div>
+      <div class="keys">
+        <button data-k="back"><svg viewBox="0 0 24 24"><path d="m14.5 5-7 7 7 7"/></svg>Back</button>
+        <button data-k="home"><svg viewBox="0 0 24 24"><path d="M4 11 12 4.5l8 6.5v8a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1Z"/></svg>Home</button>
+        <button data-k="playpause"><svg viewBox="0 0 24 24"><path d="M5 6v12l7-6ZM15 6v12M19 6v12"/></svg>Play</button>
+      </div>
+    </div>
+    <p class="foot">Arrows and OK work on Prism. In other apps, Back, Home, play and volume work. Arrows also work in other apps' text boxes when Prism Keyboard is on.</p>
+  </section>
+
+  <!-- Type -->
+  <section class="tab" id="t-type">
+    <div class="group">
+      <textarea id="typeBox" rows="3" placeholder="Type here. It appears on the TV as you type."></textarea>
+    </div>
+    <div class="row2">
+      <button class="btn" id="typeSearch">Search on TV</button>
+      <button class="btn tint" id="typeApp">Send to the open app</button>
+    </div>
+    <p class="foot">"Search on TV" types into Prism's search. "Send to the open app" types into Netflix, YouTube or any app's text box, once Prism Keyboard is turned on (Settings tab).</p>
+  </section>
+
+  <!-- Photos -->
+  <section class="tab" id="t-photos">
+    <label class="btn big"><input type="file" id="photoPick" accept="image/*" multiple hidden>Add family photos</label>
+    <p class="foot" id="photoStatus">Photos show in the screensaver. They are resized on your phone and stored only on the TV.</p>
+    <div class="photos" id="photoGrid"></div>
+  </section>
+
+  <!-- Notes -->
+  <section class="tab" id="t-notes">
+    <div class="group">
+      <textarea id="noteText" rows="3" maxlength="280" placeholder="Leave a note for the family"></textarea>
+      <input id="noteFrom" placeholder="From (your name)" maxlength="30">
+    </div>
+    <button class="btn big" id="notePost">Post to the TV</button>
+    <h3>On the TV</h3>
+    <div class="group" id="noteList"></div>
+  </section>
+
+  <!-- Home -->
+  <section class="tab" id="t-home">
+    <h3>Profile</h3>
+    <div class="group"><div class="cell"><span>Editing</span><select id="profileSel"></select></div></div>
+    <h3>Home row</h3>
+    <div class="group" id="homeList"></div>
+    <div class="group"><div class="cell"><span>Add to Home</span><select id="homeAdd"></select></div></div>
+    <h3>Look</h3>
+    <div class="group" id="lookList"></div>
+    <h3>Folders</h3>
+    <div class="group" id="folderList"></div>
+    <h3>Your pages</h3>
+    <div class="group" id="pageList"></div>
+    <details class="group new"><summary>New page</summary>
+      <input id="pageName" placeholder="Page name, for example Kids or Cricket" maxlength="20">
+      <div id="pageApps" class="checks"></div>
+      <button class="btn" id="pageAdd">Add page</button>
+    </details>
+  </section>
+
+  <!-- Settings -->
+  <section class="tab" id="t-settings">
+    <h3>Profiles</h3>
+    <div class="group" id="profList"></div>
+    <div class="row2"><input id="profName" placeholder="New profile name" maxlength="20"><button class="btn" id="profAdd">Add</button></div>
+    <h3>Screensaver</h3>
+    <div class="group" id="saverList"></div>
+    <h3>Night</h3>
+    <div class="group" id="nightList"></div>
+    <h3>General</h3>
+    <div class="group" id="genList"></div>
+    <h3>Weather place</h3>
+    <div class="group"><div class="cell"><span id="placeNow"></span></div><div class="cell col"><input id="placeQ" placeholder="Search a city or area"><div id="placeRes"></div></div></div>
+    <h3>Google Calendar</h3>
+    <div class="group"><div class="cell col"><input id="icsUrl" placeholder="Paste your calendar's secret address in iCal format"><p class="sub">On a computer: Google Calendar, Settings, your calendar, Integrate calendar, copy "Secret address in iCal format".</p><div class="row2"><button class="btn" id="icsSave">Save link</button><button class="btn plain" id="icsClear">Remove</button></div><p class="sub" id="icsState"></p></div></div>
+    <h3>News sources</h3>
+    <div class="group" id="newsList"></div>
+    <h3>TV inputs</h3>
+    <div class="group" id="inputList"></div>
+    <h3>Updates</h3>
+    <div class="group"><div class="cell col"><input id="updUrl" placeholder="Update link (version.json)"><div class="row2"><button class="btn" id="updSave">Save link</button><label class="btn plain"><input type="file" id="apkPick" accept=".apk,application/vnd.android.package-archive" hidden>Send update file</label></div><p class="sub" id="updState"></p></div></div>
+    <h3>Prism Keyboard</h3>
+    <div class="group"><div class="cell col"><p class="sub">To type from your phone into other apps: on the TV open Settings, Device Preferences, Keyboard, Manage keyboards, and turn on Prism Keyboard. Then choose it as the current keyboard.</p></div></div>
+  </section>
+</main>
+
+<nav class="tabs" id="tabs">
+  <button class="on" data-t="remote"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="5"/><circle cx="12" cy="8" r="2.4"/></svg>Remote</button>
+  <button data-t="type"><svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2.4"/><path d="M6 10h.01M9.5 10h.01M13 10h.01M16.5 10h.01M7.5 14h9"/></svg>Type</button>
+  <button data-t="photos"><svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2.4"/><circle cx="9" cy="9.8" r="1.5"/><path d="m4.5 17.5 4.5-4.5 3 3 2.5-2.5 5 5"/></svg>Photos</button>
+  <button data-t="notes"><svg viewBox="0 0 24 24"><path d="M5 4.5h14v10.5l-5 5H5Z"/><path d="M14 20v-5h5"/></svg>Notes</button>
+  <button data-t="home"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1.8"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.8"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.8"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.8"/></svg>Home</button>
+  <button data-t="settings"><svg viewBox="0 0 24 24"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2.2"/><circle cx="9" cy="17" r="2.2"/></svg>Settings</button>
+</nav>
+<div class="toast" id="toast"></div>
+<script src="phone.js"></script>
+</body>
+</html>

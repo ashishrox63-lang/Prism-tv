@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prism TV Home</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!--PRISM-BODY-START-->
+<div id="viewport">
+  <div id="stage" class="booting look-shelf motion" aria-label="Prism home screen">
+
+    <div class="bg" aria-hidden="true">
+      <div class="wall" id="wallA"></div><div class="wall" id="wallB"></div>
+      <div class="scrim scrim-shelf"></div><div class="scrim scrim-glass"></div><div class="scrim scrim-ring"></div><div class="scrim scrim-today"></div>
+      <div class="spot" id="spotA"></div><div class="spot" id="spotB"></div>
+      <div class="floor"></div>
+    </div>
+
+    <div class="ui" id="ui">
+      <header class="top">
+        <nav class="seg glass" id="seg"><div class="seg-pill" id="segPill"></div></nav>
+        <div class="topright">
+          <div class="btns" id="btns"></div>
+          <div class="clock"><div class="t" id="clockT"></div><div class="d" id="clockD"></div></div>
+        </div>
+      </header>
+
+      <div class="bigclock" aria-hidden="true"><div class="t" id="bigT"></div><div class="d" id="bigD"></div></div>
+
+      <section class="hero" aria-live="polite">
+        <div class="hero-t" id="heroA"></div><div class="hero-t" id="heroB"></div>
+        <div class="hero-s" id="heroS"></div>
+      </section>
+
+      <section class="rowwrap"><div class="row" id="row"></div><div class="tlabel" id="tlabel"></div></section>
+      <div class="dock glass" id="dock"></div>
+      <div class="tip glass" id="tip"></div>
+      <section class="ringwrap"><div class="ring" id="ring"></div></section>
+
+      <div class="pagehead"><h1>All apps</h1><span id="allCount"></span></div>
+      <div class="gridwrap"><div class="grid" id="grid"></div></div>
+
+      <div class="todayhead" id="todayHead"></div>
+      <div class="today" id="today"></div>
+
+      <div class="hints" id="hints"></div>
+    </div>
+
+    <div class="layer cc" id="cc" aria-hidden="true"><div class="cc-card glass" id="ccCard"></div></div>
+
+    <div class="layer settings" id="settings" aria-hidden="true">
+      <div class="set-bg glass"></div>
+      <div class="set-left">
+        <h2>Customize</h2>
+        <p>Left and right change a setting. Everything saves as you go.</p>
+        <div class="preview" id="preview"><div class="pv-scrim"></div><div class="pv-t" id="pvT"></div><div class="pv-row"><i></i><i></i><i></i><i></i><i></i></div></div>
+        <div class="pv-cap" id="pvCap"></div>
+      </div>
+      <div class="set-right"><div class="set-list" id="setList"></div></div>
+    </div>
+
+    <div class="layer folder" id="folder" aria-hidden="true">
+      <div class="folder-card glass" id="folderCard"><h2 id="folderName"></h2><div class="fgrid-wrap" id="folderGrid"></div></div>
+    </div>
+
+    <div class="layer inputs" id="inputs" aria-hidden="true">
+      <div class="lay-head"><h2>Inputs</h2><p>Choose what to watch. Rename inputs from the phone remote.</p></div>
+      <div class="input-row" id="inputRow"></div>
+    </div>
+
+    <div class="layer search" id="search" aria-hidden="true">
+      <div class="s-panel">
+        <div class="s-field" id="sField"></div>
+        <div class="s-keys" id="sKeys0"></div>
+        <div class="s-keys s-keys2" id="sKeys1"></div>
+        <div class="s-res" id="sRes"></div>
+        <div class="s-act" id="sAct"></div>
+      </div>
+    </div>
+
+    <div class="layer profiles" id="profiles" aria-hidden="true">
+      <div class="lay-head center"><h2>Who is watching?</h2><p>Each profile keeps its own Home, look and habits.</p></div>
+      <div class="prof-row" id="profRow"></div>
+    </div>
+
+    <div class="layer phone" id="phone" aria-hidden="true">
+      <div class="phone-card glass">
+        <div class="qr" id="qr"></div>
+        <div class="phone-text">
+          <h2>Use your phone as a remote</h2>
+          <p>Open the camera on your phone and point it at the code. Or type this address into your phone's browser:</p>
+          <div class="purl" id="phoneUrl"></div>
+          <ul><li>Remote, touchpad and keyboard</li><li>Send family photos and notes</li><li>Rearrange Home, change the look, add pages</li><li>Link your Google Calendar and pick news sources</li></ul>
+          <p class="pnote" id="phoneNote"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="layer night" id="night" aria-hidden="true">
+      <div class="night-card">
+        <svg class="nring" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="90" class="track"/><circle cx="100" cy="100" r="90" class="prog" id="nightRing"/></svg>
+        <div class="nnum" id="nightNum">60</div>
+        <h2 id="nightMsg">Time for bed</h2>
+        <p id="nightSub">Your TV switches off in</p>
+        <div class="nbtns"><div class="nb" data-n="0">Keep watching for 30 minutes</div><div class="nb" data-n="1">Switch off now</div></div>
+      </div>
+    </div>
+
+    <div class="layer blackout" id="blackout" aria-hidden="true"><p>Press any button to wake</p></div>
+
+    <div class="menu layer" id="menu" aria-hidden="true"><div class="menu-card glass" id="menuCard"></div></div>
+
+    <div class="launch" id="launch"><div class="lmark" id="lmark"></div></div>
+
+    <div class="layer saverlayer" id="saver" aria-hidden="true"></div>
+
+    <div class="island" id="island" role="status"><div class="dot" id="islandDot"></div><span id="islandText"></span><i class="bars" id="islandBars"><i></i><i></i><i></i><i></i></i></div>
+
+    <div class="boot" id="boot" aria-hidden="true">
+      <div class="bshape"><div class="bfill"></div></div>
+      <div class="bword"><i style="--k:0">P</i><i style="--k:1">r</i><i style="--k:2">i</i><i style="--k:3">s</i><i style="--k:4">m</i></div>
+    </div>
+  </div>
+</div>
+<p class="device-note" id="deviceNote">Preview of Prism, a home screen for your TV. Use the arrow keys, Enter and Esc like a remote, or click. Hold Enter or right-click a tile for options. Live weather, news and your apps appear on the TV.</p>
+<!--PRISM-BODY-END-->
+<script src="qr.js"></script>
+<script src="info.js"></script>
+<script src="saver.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
