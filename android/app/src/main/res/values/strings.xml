@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="access_desc">Lets Prism switch the TV off at your chosen night time, and lets the phone remote use Back and Home while another app is open. Prism does not read anything on your screen.</string>
+    <string name="ime_label">Prism Keyboard</string>
+</resources>

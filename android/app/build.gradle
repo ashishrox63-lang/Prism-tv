@@ -1,0 +1,57 @@
+plugins {
+    id "com.android.application"
+}
+
+android {
+    namespace "app.prism.tvhome"
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "app.prism.tvhome"
+        minSdk 24
+        targetSdk 34
+        versionCode((System.getenv("GITHUB_RUN_NUMBER") ?: "1").toInteger() + 1)
+        versionName "2." + (System.getenv("GITHUB_RUN_NUMBER") ?: "0")
+    }
+
+    /* A fixed key, so every new build installs over the old one and keeps your settings.
+       This key only signs a personal sideloaded app; it is not a secret. */
+    signingConfigs {
+        prism {
+            storeFile file("prism-tv.jks")
+            storePassword "prismtvhome"
+            keyAlias "prism"
+            keyPassword "prismtvhome"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.prism
+        }
+        debug {
+            signingConfig signingConfigs.prism
+        }
+    }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    /* The home screen (../web) and the phone remote page (../phone) are copied into assets by the syncWeb task below. */
+    sourceSets { main { assets.srcDirs = ["src/main/assets"] } }
+}
+
+tasks.register("syncWeb", Copy) {
+    from(rootProject.file("../web")) { exclude "**/*.md"; into "web" }
+    from(rootProject.file("../phone")) { into "phone" }
+    into(file("src/main/assets"))
+}
+preBuild.dependsOn("syncWeb")
